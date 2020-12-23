@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Atualizar pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row ion-row style="margin: 8px;">
+      <ion-col size="3">
+        <ion-avatar style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;">
+          <img src={{image}} />
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="9">
+        <ion-item>
+          <ion-label position="floating">Escolha o item</ion-label>
+          <ion-select style="max-width: 100%;" cancelText="Cancelar"[(ngModel)]="pedido.type">
+            <ion-select-option>{{pedido.type}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin: 8px;">
+      <ion-col size="3">
+        <ion-item>
+          <ion-label position="floating">Qtd</ion-label>
+          <ion-input inputmode="numeric" name="amount" type="number" [(ngModel)]="pedido.amount"></ion-input>
+          <!--<ion-input inputmode="numeric" style="background-color: rgb(255, 255, 255); color: black; margin-top: 20px;" name="amount" type="number" [(ngModel)]="pedido.amount"></ion-input>-->
+        </ion-item>
+      </ion-col>
+      <ion-col size="9">
+        <ion-item>
+          <ion-label position="floating">Escolha a unidade</ion-label>
+          <ion-select style="max-width: 100%;" cancelText="Cancelar"[(ngModel)]="pedido.unity">
+            <ion-select-option>{{pedido.unity}}</ion-select-option>v>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row ion-row style="margin: 8px;">
+      <ion-col style="padding-top: 0px;">
+        <ion-item>
+          <ion-label position="floating">Mais informações...</ion-label>
+          <ion-textarea [(ngModel)]="pedido.detail" name="detail" autoGrow="true"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab style="opacity: 90%;" horizontal="end" vertical="bottom" slot="fixed" (click)="update()">
+    <ion-fab-button color="danger">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

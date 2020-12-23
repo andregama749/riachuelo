@@ -1,0 +1,62 @@
+<ion-content padding class="loginPage" scroll="false">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center
+      style="height: 70%; margin-top: 20%; margin-bottom: 20%; margin-left: 8%; margin-right: 8%;">
+      <ion-grid class="login-container" scroll="true">
+        <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off" class="login-form">
+
+          <ion-row align-items-center>
+            <ion-col>
+              <img style="margin-top: 8%" src="assets/images/logo.png" width="105px" height="105px">
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="margin-top: 8%;">
+            <ion-col size="7">
+              <ion-input style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" placeholder="Nome completo" name="name" type="text" [(ngModel)]="user.name"> </ion-input>
+            </ion-col>
+            <ion-col size="5">
+              <ion-select interface="action-sheet" mode="ios" placeholder="Cargo" name="office" [(ngModel)]="user.office" style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" multiple="false" cancelText="Cancelar" okText="Ok!">
+                <ion-select-option value="professor">Professor</ion-select-option>
+                <ion-select-option value="manutenção">Manutenção</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row align-items-center *ngIf="user.office == 'professor'">
+            <ion-col size="12">
+              <ion-select mode="ios" placeholder="Unidades" name="unitys" [(ngModel)]="user.unitys" style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" multiple="true" cancelText="Cancelar" okText="Ok!">
+                <ion-select-option value="Gilberto Cardoso">Gilberto Cardoso</ion-select-option>
+                <ion-select-option value="Goytacazes">Goytacazes</ion-select-option>
+                <ion-select-option value="Jardim Carioca">Jardim Carioca</ion-select-option>
+                <ion-select-option value="João Maria">João Maria</ion-select-option>
+                <ion-select-option value="Matriz Fundamental">Matriz Fundamental</ion-select-option>
+                <ion-select-option value="Matriz Infantil">Matriz Infantil</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row align-items-center>
+            <ion-input style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" placeholder="Email" name="username" id="loginField" type="text" required [(ngModel)]="user.email">
+            </ion-input>
+          </ion-row>
+
+          <ion-row align-items-center>
+            <ion-input style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" placeholder="Senha" name="password" id="passwordField" type="password" required [(ngModel)]="user.password"></ion-input>
+          </ion-row>
+
+          <ion-row align-items-center>
+            <ion-input style="margin-bottom: 5%; background-color: rgb(255, 255, 255); color: black;" placeholder="Confirme a senha" name="password_confirm" id="passwordField" type="password" required [(ngModel)]="password_confirm"></ion-input>
+          </ion-row>
+
+          <ion-row>
+            <ion-col style=" margin-top: 5%;">
+              <ion-button style="width: 100%; height: 35px;" [disabled]="!loginForm.form.valid" class="submit-btn" (click)="register()">CADASTRAR</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

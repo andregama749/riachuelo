@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <ion-title>Solicitações a liberar</ion-title>
+        </ion-col>
+        <ion-col style="padding: 0px;" size="1">
+          <ion-button style="height: 70%;" color="black" (click)="logout()">
+            <ion-icon style="color: black;" name="exit-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngFor="let unity of unitys_user">
+    <div *ngFor="let pedidoPap of list_pedidos_pap; let i = index">
+      <div *ngIf="pedidoPap.papelaria.status == 'Aguardando liberação'"> 
+        <ion-card style="background-color: white;" *ngIf="unity == pedidoPap.papelaria.unity">
+          <ion-card-content style="padding: 0px;">
+            <ion-list style="padding: 0px; margin: 8px;">
+              <ion-item-sliding>
+                <ion-item (click)="showAlert(pedidoPap)">
+                  <ion-avatar style="margin-right: 5%;">
+                    <img src={{image}} />
+                  </ion-avatar>
+                  <ion-label style="margin-bottom: 8px;">
+                    <p>{{pedidoPap.papelaria.type}} (Qt. {{pedidoPap.papelaria.amount}})</p>
+                    <p style="float: right; font-style: italic; font-size: 0.8rem;">{{pedidoPap.papelaria.name_user}}</p>
+                    <p>{{pedidoPap.papelaria.unity}}</p>
+                  </ion-label>
+                </ion-item>
+      
+                <ion-item-options side="start" style="padding: 0px; width: 13%;">
+                  <ion-item-option style="width: 100%;" color="danger" (click)="negar(pedidoPap)">
+                    <ion-icon slot="top" name="close-circle-outline"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+                <ion-item-options side="end" style="padding: 0px; width: 13%;">
+                  <ion-item-option style="width: 100%;" color="primary" (click)="liberar(pedidoPap)">
+                    <ion-icon slot="top" name="checkmark-circle-outline"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

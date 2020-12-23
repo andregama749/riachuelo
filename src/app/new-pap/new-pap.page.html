@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Novo Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <ion-grid>
+    <ion-row ion-row style="margin: 8px;">
+      <ion-col size="3">
+        <ion-avatar style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;"> 
+          <img src={{image}}/>
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="9">
+        <ion-item>
+          <ion-label position="floating">Escolha o item</ion-label>
+          <ion-select style="max-width: 100%;" cancelText="Cancelar" [(ngModel)]="papelaria.type" (ionChange)="selectImage()">
+            <ion-select-option *ngFor="let item of list_materiais | async">{{item.Item.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin: 8px;">
+      <ion-col size="3">
+        <ion-item>
+          <ion-label position="floating">Qtd</ion-label>
+          <ion-input inputmode="numeric" name="amount"  type="number" [(ngModel)]="papelaria.amount"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="9">
+        <ion-item>
+          <ion-label position="floating">Escolha a unidade</ion-label>
+          <ion-select style="max-width: 100%;" cancelText="Cancelar" [(ngModel)]="papelaria.unity">
+            <div *ngFor="let user of list_users | async">
+              <div *ngIf="user.id == current_email">
+                <ion-select-option *ngFor="let unity of user.user.unitys">{{unity}}</ion-select-option>
+              </div>
+            </div>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row ion-row style="margin: 8px;">
+      <ion-col style="padding-top: 0px;">
+        <ion-item>
+          <ion-label position="floating">Mais informações...</ion-label>
+          <ion-textarea [(ngModel)]="papelaria.detail" name="detail" autoGrow="true"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="save()">
+    <ion-fab-button color="danger">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <ion-title>Meus Pedidos</ion-title>
+        </ion-col>
+        <ion-col style="padding: 0px;" size="1">
+          <ion-button style="height: 70%;" color="black" (click)="logout()">
+            <ion-icon style="color: black;" name="exit-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideFab]="fab">
+  <div *ngFor="let pedido of list_pedidos">
+    <ion-card style="background-color: white;" *ngIf="current_email == pedido.papelaria.id_user">
+      <ion-card-content style="padding: 0px;">
+        <ion-list style="padding: 0px; margin: 8px;">
+          <ion-item-sliding>
+            <ion-item (click)="showAlert2(pedido)">
+              <ion-avatar style="margin-right: 5%;">
+                <img src={{image}} />
+              </ion-avatar>
+              <ion-label style="margin-bottom: 8px;">
+                <p style="float: right; font-size: 0.7rem;">{{pedido.papelaria.status}}</p>
+                <p>{{pedido.papelaria.type}}</p>
+                <div *ngIf="pedido.papelaria.status == 'Aguardando liberação'" class="circulo-pequeno andamento"></div>
+                <div *ngIf="pedido.papelaria.status == 'Aguardando separação'" class="circulo-pequeno separacao"></div>
+                <div *ngIf="pedido.papelaria.status == 'Pronto'" class="circulo-pequeno pronto"></div>
+                <div *ngIf="pedido.papelaria.status == 'Negado'" class="circulo-pequeno negado"></div>
+                <p>{{pedido.papelaria.unity}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end" style="padding: 0px; width: 13%;">
+              <ion-item-option style="width: 100%;" color="primary" (click)="editPedido(pedido.papelaria)">
+                <ion-icon slot="top" name="create-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab #fab horizontal="end" vertical="bottom" slot="fixed" (click)="add()">
+    <ion-fab-button color="danger">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
